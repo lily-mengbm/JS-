@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>类的操作</title>
+  <style>
+    .b1{
+      width: 100px;
+      height: 100px;
+      background-color: greenyellow;
+    }
+    .b2{
+      width: 200px;
+      height: 200px;
+      background-color: gray;
+    }
+  </style>
+  <script>
+    window.onload = function () {
+      var box = document.getElementById("box");
+      var btn1 = document.getElementById("btn1");
+      btn1.onclick = function(){
+        //修改box样式
+        //通过style属性来修改元素的样式，每修改一个样式，浏览器就需要重新渲染一次页面，性能较差
+        /*box.style.width = "200px";
+        box.style.height = "200px";
+        box.style.backgroundColor = "grey";*/
+        /*
+        * 可以通过修改class属性来间接修改样式 只需要修改一次即可修改多个样式
+        * */
+        //box.className = "b2";
+        //box.className += " b2";
+        //addClass(box, "b2");
+        toggleClass(box, "b2");
+      };
+      /*
+      * 定义一个函数，用来向一个元素中添加指定的class属性值
+      * 参数：
+      * obj 要添加class属性的元素
+      * cn 要添加的class值
+      * */
+      function addClass(obj, cn) {
+        //检查obj中是否含有cn
+        if(!hasClass(obj, cn)){
+          obj.className += " " + cn;
+        }
+      }
+      /*
+      * 判断一个元素中是否含有指定的class属性值
+      * 如果有则返回true，没有则返回false
+      * */
+      function hasClass(obj, cn) {
+        //创建一个正则表达式
+        //var reg = /\bb2\b/;
+        var reg = new RegExp("\\b" + cn + "\\b");
+        return reg.test(obj.className);
+      }
+      //删除一个元素中指定的class属性
+      function removeClass(obj, cn) {
+        //创建一个正则表达式
+        var reg = new RegExp("\\b" + cn + "\\b");
+        //删除class
+        obj.className = obj.className.replace(reg, "");
+      }
+      /*
+      * toggleClass()切换一个类
+      * 如果元素中具有该类，则删除
+      * 如果元素中没有该类，则添加
+      * */
+      function toggleClass(obj, cn) {
+        //判断obj中是否含有cn
+        if(hasClass(obj, cn)){
+          //有则删除
+          removeClass(obj, cn);
+        }else{
+          //没有则添加
+          addClass(obj, cn);
+        }
+      }
+    }
+  </script>
+</head>
+<body>
+  <button id="btn1">点击按钮以后修改box样式</button>
+  <br/><br/>
+  <div id="box" class="b1"></div>
+</body>
+</html>

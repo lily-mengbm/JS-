@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>作用域练习题</title>
+  <script>
+    var a = 123;
+    function fun(){
+      console.log(a);//123
+    }
+    fun();
+
+    var b = 123;
+    function fun1(){
+      console.log(b);//undefined
+      var b = 456;
+    }
+    fun1();
+    console.log(b);//123
+
+    var c = 123;
+    function fun2() {
+      console.log(c);//123
+      c = 456;
+    }
+    fun2();
+    console.log(c);//456
+
+    var d = 123;
+    function fun3(d) {
+      console.log(d);//undefined
+      d = 456;
+    }
+    fun3();
+    console.log(d);//123
+
+    var e = 123;
+    function fun4(e){
+      console.log(e);//123
+      e = 456;
+    }
+    fun4(123);
+    console.log(e);//123
+  </script>
+</head>
+<body>
+
+</body>
+</html>

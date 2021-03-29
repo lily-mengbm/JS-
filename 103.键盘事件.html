@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>键盘事件</title>
+  <script>
+    window.onload = function () {
+      /*
+      * 键盘事件：
+      * onkeydown 键盘被按下
+      *   如果按着案件不松手，则该事件连续被触发
+      *   当onkeydown事件被连续触发时，为了防止误操作，第一次和第二次之间时间间隔稍长，其他比较快
+      * onkeyup 键盘被松开
+      * 键盘事件一般绑定给可以获取焦点的对象或者document
+      * */
+      /*document.onkeydown = function (event) {
+        event = event || window.event;
+        //通过keyCode可以获取按键编码
+        console.log(event.keyCode);
+        //判断ctrl和Y键是否同时被按下
+        if(event.keyCode === 89 && event.ctrlKey){
+          console.log("ctrl 和 Y 被按下了");
+        }
+      };
+      document.onkeyup = function () {
+        console.log("松开了");
+      };*/
+      var input = document.getElementsByTagName("input")[0];
+      input.onkeydown = function(event){
+        event = event || window.event;
+        //使文本框中不能输入数字
+        if(event.keyCode >= 48 && event.keyCode <= 57){
+          //在文本框中输入内容属于onkeydown的默认行为，return false取消该默认行为则输入的内容不会显示
+          return false;
+        }
+        console.log("input按键被按下了");
+        console.log(event.keyCode);
+      };
+    }
+  </script>
+</head>
+<body>
+  <input/>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>键盘移动div</title>
+  <style>
+    #box1{
+      width: 100px;
+      height: 100px;
+      background-color: pink;
+      position: absolute;
+    }
+  </style>
+  <script>
+    window.onload = function () {
+      //使div可以根据不同的方向键往不同的方向移动
+      var box1 = document.getElementById("box1");
+      document.onkeydown = function (event) {
+        event = event || window.event;
+        //定义一个变量表示速度
+        var speed = 10;
+        //当用户按了ctrl键 速度变快
+        if(event.ctrlKey){
+          speed = 30;
+        }
+        switch(event.keyCode){
+          case 37:
+            //上
+            box1.style.left = box1.offsetLeft - speed + "px";
+            break;
+          case 39:
+            //右
+            box1.style.left = box1.offsetLeft + speed + "px";
+            break;
+          case 38:
+            box1.style.top = box1.offsetTop - speed + "px";
+            break;
+          case 40:
+            //下
+            box1.style.top = box1.offsetTop + speed + "px";
+            break;
+        }
+      };
+    }
+  </script>
+</head>
+<body>
+  <div id="box1"></div>
+</body>
+</html>

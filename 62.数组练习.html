@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>数组练习</title>
+  <script>
+    function Person(name, age){
+      this.name = name;
+      this.age = age;
+    }
+    var per = new Person("孙悟空", 222);
+    var per2 = new Person("白骨精", 13);
+    var per3 = new Person("金角大王", 2122);
+    var per4 = new Person("唐僧", 20);
+    var per5 = new Person("红孩儿", 8);
+    var per6 = new Person("猪八戒", 30);
+
+    var perArr = [per, per2, per3, per4, per5, per6];
+
+    /*
+    * 创建一个函数，可以将perArr中满18岁的Person提取出来，然后封装到一个新的数组中并返回
+    * */
+    function getAdult(arr) {
+      //创建一个新的数组
+      var newArr = [];
+      //遍历arr，获取arr中Person对象
+      for(let i=0; i<arr.length; i++){
+        //判断Person对象中的age是否大于等于18
+        if(arr[i].age >= 18){
+          //如果大于等于18，则将这个对象添加到newArr中
+          newArr.push(arr[i]);
+        }
+      }
+      //将新的数组返回
+      return newArr;
+    }
+
+    var result = getAdult(perArr);
+    console.log(result);
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

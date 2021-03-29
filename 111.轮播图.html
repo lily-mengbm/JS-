@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>轮播图</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    /*设置outer样式*/
+    #outer{
+      width: 520px;
+      height: 333px;
+      margin: 50px auto;
+      background-color: pink;
+      padding: 10px 0;
+      position: relative;
+      overflow: hidden;
+
+    }
+    #imgList{
+      list-style: none;
+      position: absolute;
+      left: 0;
+    }
+    #imgList li{
+      float: left;
+      margin: 0 10px;
+    }
+    #navDiv{
+      position: absolute;
+      bottom: 15px;
+    }
+    #navDiv a{
+      float: left;
+      width: 15px;
+      height: 15px;
+      background-color: lightskyblue;
+      margin: 0 5px;
+      opacity: 0.5;
+      /*兼容IE8透明*/
+      filter: alpha(opacity = 50);
+    }
+    #navDiv a:hover{
+      background-color: pink;
+    }
+  </style>
+  <script src="tools.js"></script>
+  <script>
+    window.onload = function () {
+      //设置imgList的宽度
+      var imgList = document.getElementById("imgList");
+      var imgArr = document.getElementsByTagName("img");
+      imgList.style.width = 520*imgArr.length + "px";
+      //设置导航按钮居中
+      var navDiv = document.getElementById("navDiv");
+      var outer = document.getElementById("outer");
+      navDiv.style.left = (outer.offsetWidth - navDiv.offsetWidth)/2 + "px";
+      //默认显示图片的索引
+      var index= 2;
+      var allA = document.getElementsByTagName("a");
+      //设置默认选中的效果
+      allA[index].style.backgroundColor = "deeppink";
+      //点击超链接显示对应的图片
+      for(let i=0; i<allA.length; i++){
+        //获取点击的超链接的索引
+        allA[i].num = i;
+        allA[i].onclick = function () {
+          //关闭自动切换图片的定时器
+          clearInterval(timer);
+          index = this.num;
+          //切换图片
+          //imgList.style.left = -520*index + "px";
+          //修改选中的a
+          setA();
+          //使用move函数来切换图片
+          move(imgList, "left", -520*index, 20, function () {
+            //动画执行完毕开启自动切换图片
+            autoChange();
+          });
+
+        }
+      }
+      //自动切换图片
+      autoChange();
+      //创建一个方法用于设置选中的a
+      function setA() {
+        //判断当前索引是否是最后一张图片
+        if(index >= imgArr.length - 1){
+          //将index设置为0
+          index = 0;
+          //此时显示最后一张图片即第一张图片 通过CSS将最后一张切换成第一张
+          imgList.style.left = 0;
+        }
+        //遍历所有a，并将它们背景颜色设置为红色
+        for(let i=0; i<allA.length; i++){
+          allA[i].style.backgroundColor = "";
+        }
+        //将选中的a背景设置为蓝色
+        allA[index].style.backgroundColor = "red";
+      }
+      var timer;
+      //创建一个函数用于开启自动切换图片
+      function autoChange() {
+        //开启一个定时器用于定时切换图片
+        timer = setInterval(function () {
+          //使索引自增
+          index++;
+          //判断index
+          index %= imgArr.length;
+          //执行动画，切换图片
+          move(imgList, "left", -520*index, 20, function () {
+            //设置导航按钮
+            setA();
+          })
+
+        }, 3000);
+      }
+
+    }
+  </script>
+</head>
+<body>
+  <!--创建外部div-->
+  <div id="outer">
+    <!--创建一个ul 用于放置图片-->
+    <ul id="imgList">
+      <li><img src="imgs/1.jpg"/></li>
+      <li><img src="imgs/2.jpg"/></li>
+      <li><img src="imgs/3.jpg"/></li>
+      <li><img src="imgs/4.jpg"/></li>
+      <li><img src="imgs/5.jpg"/></li>
+      <li><img src="imgs/1.jpg"/></li>
+    </ul>
+    <!--创建导航按钮-->
+    <div id="navDiv">
+      <a href="javascript:;"></a>
+      <a href="javascript:;"></a>
+      <a href="javascript:;"></a>
+      <a href="javascript:;"></a>
+      <a href="javascript:;"></a>
+    </div>
+  </div>
+</body>
+</html>

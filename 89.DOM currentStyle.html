@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>使用DOM操作样式</title>
+  <style>
+    #box1{
+      width: 20rem;
+      height: 20rem;
+      background-color: pink;
+    }
+  </style>
+  <script>
+    window.onload = function () {
+      //点击按钮读取btn1样式
+      var box1 = document.getElementById("box1");
+      var btn1 = document.getElementById("btn1");
+      btn1.onclick = function () {
+        /*
+        * 获取元素的当前显示样式
+        * IE浏览器：
+        * 语法：元素.currentStyle.样式名
+        * 它可以用来读取当前元素正在显示的样式，如果当前元素没有设置该样式，则获取它的默认值
+        *
+        * 其他浏览器：
+        * getComputedStyle() 获取元素当前显示样式
+        * 这个方法是window的方法，可以直接使用
+        * 需要两个参数：
+        * 第一个：要获取样式的元素
+        * 第二个：可以传递一个伪元素，一般都传null
+        * 该方法会返回一个对象，对象中封装了当前元素对应的样式
+        * 可以通过对象.样式名来读取样式
+        * 如果获取的样式没有设置，则会获取到真实的值，而不是默认值
+        * 比如：没有设置width，不会获取到auto，而是一个准确的当前显示长度值
+        * 该方法不支持IE8及以下浏览器
+        *
+        * 通过currentStyle和getComputedStyle()读取到的样式都是只读的
+        * */
+        //console.log(box1.currentStyle.width);
+        console.log(getComputedStyle(box1, null).width);
+      };
+    };
+  </script>
+</head>
+<body>
+  <button id="btn1">点我一下</button>
+  <br/><br/>
+  <div id="box1"></div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>文档的加载</title>
+
+</head>
+<body>
+  <button id="btn">点我</button>
+  <script>
+    /*
+    * 浏览器在加载页面时，是按照从上往下的顺序加载的，读取到一行就运行一行
+    * 如果将script标签写在页面的上边，在代码执行时，页面还没有加载
+    * 将js代码编写到页面的下方就是为了可以在页面加载完毕以后再执行js代码
+    *
+    * onload事件会在整个页面加载完成之后再触发
+    * 将代码编写到为window绑定onload事件的函数中时，可以将script标签写在head标签里
+    * */
+    var btn = document.getElementById("btn");
+    btn.onclick = function () {
+      alert("点了一下~");
+    }
+  </script>
+</body>
+</html>

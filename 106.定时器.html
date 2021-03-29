@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>定时器</title>
+  <script>
+    window.onload = function(){
+      //获取count
+      var count = document.getElementById("count");
+      //使count中的内容自动切换
+      /*
+      * setInterval()定时调用，可以将一个函数每隔一段时间执行一次
+      * 参数：
+      * 1.回调函数:该函数会每隔一段时间被调用一次
+      * 2.每次调用的间隔时间，单位是毫秒
+      * 返回值：Number类型的数据，作为定时器的唯一标识
+      * clearInterval()可以用来关闭一个定时器，需要一个定时器标识作为参数
+      * 注意：
+      * clearInterval()可以接收任意参数
+      * 如果参数是一个有效的定时器标识，则停止对应的定时器
+      * 如果参数不是一个有效的标识，则什么也不做
+      * */
+      var num = 1;
+      var timer = setInterval(function(){
+        count.innerHTML = num++;
+        if(num == 10){
+          clearInterval(timer);
+        }
+      }, 1000);
+    }
+  </script>
+</head>
+<body>
+  <div id="count">1</div>
+</body>
+</html>

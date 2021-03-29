@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>getStyle（）方法</title>
+  <style>
+      #box1{
+        width: 20rem;
+        height: 20rem;
+        background-color: pink;
+      }
+  </style>
+  <script>
+    window.onload = function () {
+      /*
+      * 定义一个函数，用来获取指定元素的当前样式
+      * 参数：obj 要获取样式的元素
+      *      name 要获取的样式名
+      * */
+      var btn1 = document.getElementById("btn1");
+      var box1 = document.getElementById("box1");
+      function getStyle(obj, name) {
+        //方法一
+        if(window.getComputedStyle){
+          //正常浏览器
+          return getComputedStyle(obj, null)[name];
+        }else{
+          //IE浏览器
+          return obj.currentStyle[name];
+        }
+        //方法二
+        //return window.getComputedStyle ? getComputedStyle(obj, null)[name] : obj.currentStyle[name];
+        //方法三
+        //return getComputedStyle(obj, null)[name] || obj.currentStyle[name];
+      }
+      btn1.onclick = function () {
+        var width = getStyle(box1, "width");
+        console.log(width);
+      };
+    }
+  </script>
+</head>
+<body>
+  <button id="btn1">点我啊^-^</button>
+  <br/><br/>
+  <div id="box1"></div>
+</body>
+</html>

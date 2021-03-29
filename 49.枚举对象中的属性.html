@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>枚举对象中的属性</title>
+  <script>
+    var obj = {
+      name: "张三",
+      age: 19,
+      sayName: function () {
+        console.log(obj.name);
+      }
+    }
+
+    /*
+    * 枚举对象中的属性 需要使用for...in语句
+    * 语法:
+    * for(var 变量 in 对象){
+    *   语句...
+    * }
+    * for...in语句 对象中有几个属性，循环就会执行几次
+    * 每次执行时，会将对象中的一个属性的名字赋值给变量
+    * */
+    for(let n in obj){
+      console.log("属性名：" + n);
+      console.log("属性值：" + obj[n]);
+    }
+  </script>
+</head>
+<body>
+
+</body>
+</html>

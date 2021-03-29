@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>立即执行函数</title>
+  <script>
+    /*
+    * 立即执行函数：函数定义完立即被调用的函数叫做立即执行函数
+    * 立即执行函数往往只会执行一次
+    * */
+    //匿名函数声明时需要将整体用括号括起来表示一个整体，
+    // 否则解析器只能识别大括号为一个整体就会报错
+    (function () {
+      alert("我是一个匿名函数~~~");
+    })();
+
+    (function (a, b) {
+      console.log(a);
+      console.log(b);
+    })(123, 456);
+  </script>
+</head>
+<body>
+
+</body>
+</html>

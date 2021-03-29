@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>滚轮事件</title>
+  <style>
+    #box1{
+      width: 100px;
+      height: 100px;
+      background-color: pink;
+    }
+  </style>
+  <script>
+    window.onload = function () {
+      /*
+      * 当鼠标滚轮向上滚动时，box1变长
+      * 当鼠标滚轮向下滚动时，box1变短
+      * */
+      var box1 = document.getElementById("box1");
+      //为box1绑定鼠标滚轮滚动事件(火狐不支持)
+      //在火狐中需要使用DOMMouseScroll来绑定滚轮滚动事件，该事件需要通过addEventListener()函数绑定
+      box1.onmousewheel = function (event) {
+        event = event || window.event;
+        //判断鼠标滚轮滚动的方向:event.wheelDelta (向上120 向下-120) 火狐不支持
+        //火狐使用event.detail来获取滚动的方向 向上-3 向下3
+        if (event.wheelDelta > 0 || event.detail < 0){
+          //向上滚
+          box1.style.height = box1.clientHeight - 10 + "px";
+        }else{
+          //向下滚
+          box1.style.height = box1.clientHeight + 10 + "px";
+        }
+        //取消addEventListener()绑定响应函数时的浏览器默认行为（IE8不支持）
+        event.preventDefault && event.preventDefault();
+        //取消浏览器有滚动条时的默认行为
+        return false;
+      };
+      //为火狐绑定滚轮
+      bind(box1, "DOMMouseScroll", box1.onmousewheel);
+
+      function bind(obj, eventStr, callback) {
+        if(obj.addEventListener){
+          //大部分浏览
+          obj.addEventListener(eventStr, callback, false);
+        }else{
+          //IE8及以下
+          obj.attachEvent("on" + eventStr, function () {
+            callback.call(obj);
+          });
+        }
+      }
+    }
+  </script>
+</head>
+<body style="height: 2000px">
+  <div id="box1"></div>
+</body>
+</html>

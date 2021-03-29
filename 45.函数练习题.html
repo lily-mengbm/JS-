@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>函数练习</title>
+  <script>
+    /*
+    * 练习一：
+    * 定义一个函数，判断一个数字是否是偶数，如果是返回true，否则返回false
+    * */
+    function oddOrEven(num) {
+      /*if(num%2 == 0){
+        return true;
+      }else{
+        return false;
+      }*/
+      return num%2 == 0;
+    }
+    var result = oddOrEven(5);
+    console.log(result);
+
+
+    /*
+    *
+    * 练习二：
+    * 定义一个函数，可以根据半径计算一个圆的面积，并返回计算结果
+    * */
+
+    function calCircle(r) {
+      return 3.14*r*r;
+    }
+    result = calCircle(4);
+    console.log(result);
+
+
+    /*
+    * 练习三：
+    * 创建一个函数，可以在控制台中输出一个人的信息（name age gender address）
+    *
+    * 实参可以是任意的数据类型，也可以是一个对象
+    * 当我们的参数过多时，可以将参数封装到一个对象中，然后通过对象传递
+    *
+    * 实参可以是任何数据类型，也可以是函数
+    * fun作为参数是函数对象本身
+    * fun()作为参数相当于是函数执行的返回值作为参数
+    * */
+    var obj = {
+      name:"孙悟空",
+      age:10000,
+      gender:"男",
+      address:"花果山"
+    };
+    function info(o) {
+      console.log("我是" + o.name + "," + o.gender + ",今年" + o.age + "岁,家住" + o.address)
+    }
+    info(obj);
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>
